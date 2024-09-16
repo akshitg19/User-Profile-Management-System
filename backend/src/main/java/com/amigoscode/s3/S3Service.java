@@ -13,33 +13,34 @@ import java.io.IOException;
 @Service
 public class S3Service {
 
-    private final S3Client s3;
+  private final S3Client s3;
 
-    public S3Service(S3Client s3) {
-        this.s3 = s3;
+  public S3Service(software.amazon.awssdk.services.s3.S3Client s3Client) {
+    s3 = s3Client;
+  }
+
+  //Upload Method
+  public void putObject(String bucketName, String key, byte[] file ){
+    PutObjectRequest objectRequest = PutObjectRequest.builder()
+        .bucket(bucketName)
+        .key(key)
+        .build();
+    s3.putObject(objectRequest, RequestBody.fromBytes(file));
+  }
+
+  //Download Method
+  public byte[] getObject(String bucketName, String key){
+    GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+        .bucket(bucketName)
+        .key(key)
+        .build();
+    ResponseInputStream<GetObjectResponse> res=s3.getObject(getObjectRequest);
+    try {
+      return res.readAllBytes();
+    }catch(IOException e) {
+      throw new RuntimeException(e);
     }
 
-    public void putObject(String bucketName, String key, byte[] file) {
-        PutObjectRequest objectRequest = PutObjectRequest.builder()
-                .bucket(bucketName)
-                .key(key)
-                .build();
-        s3.putObject(objectRequest, RequestBody.fromBytes(file));
-    }
+  }
 
-    public byte[] getObject(String bucketName, String key) {
-        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
-                .bucket(bucketName)
-                .key(key)
-                .build();
-
-        ResponseInputStream<GetObjectResponse> res = s3.getObject(getObjectRequest);
-
-        try {
-            return res.readAllBytes();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 }

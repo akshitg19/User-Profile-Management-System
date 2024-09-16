@@ -25,27 +25,22 @@ public class Main {
 
     @Bean
     CommandLineRunner runner(
-            CustomerRepository customerRepository,
-            PasswordEncoder passwordEncoder) {
+        CustomerRepository customerRepository,
+        PasswordEncoder passwordEncoder) {
         return args -> {
             createRandomCustomer(customerRepository, passwordEncoder);
-            // testBucketUploadAndDownload(s3Service, s3Buckets);
+            //testBucketUploadAndDownload(s3Service, S3Buckets);
         };
     }
 
-    private static void testBucketUploadAndDownload(S3Service s3Service,
-                                                    S3Buckets s3Buckets) {
-        s3Service.putObject(
-                s3Buckets.getCustomer(),
-                "foo/bar/jamila",
-                "Hello World".getBytes()
+    private static void testBucketUploadAndDownload(S3Service s3Service, S3Buckets S3Buckets) {
+        s3Service.putObject(S3Buckets.getCustomer(),
+            "foo/bar/akshit",
+            "Hello World".getBytes()
         );
-
-        byte[] obj = s3Service.getObject(
-                s3Buckets.getCustomer(),
-                "foo/bar/jamila"
+        byte[] obj= s3Service.getObject(S3Buckets.getCustomer(),
+            "foo/bar/akshit"
         );
-
         System.out.println("Hooray: " + new String(obj));
     }
 
@@ -59,11 +54,11 @@ public class Main {
         Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
         String email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@amigoscode.com";
         Customer customer = new Customer(
-                firstName +  " " + lastName,
-                email,
-                passwordEncoder.encode("password"),
-                age,
-                gender);
+            firstName +  " " + lastName,
+            email,
+            passwordEncoder.encode("password"),
+            age,
+            gender);
         customerRepository.save(customer);
         System.out.println(email);
     }

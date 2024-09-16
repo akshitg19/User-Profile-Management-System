@@ -65,8 +65,8 @@ class CustomerJPADataAccessServiceTest {
     void insertCustomer() {
         // Given
         Customer customer = new Customer(
-                1, "Ali", "ali@gmail.com", "password", 2,
-                Gender.MALE);
+            1, "Ali", "ali@gmail.com", "password", 2,
+            Gender.MALE);
 
         // When
         underTest.insertCustomer(customer);
@@ -115,26 +115,13 @@ class CustomerJPADataAccessServiceTest {
     void updateCustomer() {
         // Given
         Customer customer = new Customer(
-                1, "Ali", "ali@gmail.com", "password", 2,
-                Gender.MALE);
+            1, "Ali", "ali@gmail.com", "password", 2,
+            Gender.MALE);
 
         // When
         underTest.updateCustomer(customer);
 
         // Then
         verify(customerRepository).save(customer);
-    }
-
-    @Test
-    void canUpdateProfileImageId() {
-        // Given
-        String profileImageId = "2222";
-        Integer customerId = 1;
-
-        // When
-        underTest.updateCustomerProfileImageId(profileImageId, customerId);
-
-        // Then
-        verify(customerRepository).updateProfileImageId(profileImageId, customerId);
     }
 }

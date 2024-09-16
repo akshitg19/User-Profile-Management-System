@@ -16,21 +16,21 @@ public class CustomerListDataAccessService implements CustomerDao {
         customers = new ArrayList<>();
 
         Customer alex = new Customer(
-                1,
-                "Alex",
-                "alex@gmail.com",
-                "password",
-                21,
-                Gender.MALE);
+            1,
+            "Alex",
+            "alex@gmail.com",
+            "password",
+            21,
+            Gender.MALE);
         customers.add(alex);
 
         Customer jamila = new Customer(
-                2,
-                "Jamila",
-                "jamila@gmail.com",
-                "password",
-                19,
-                Gender.MALE);
+            2,
+            "Jamila",
+            "jamila@gmail.com",
+            "password",
+            19,
+            Gender.MALE);
         customers.add(jamila);
     }
 
@@ -42,8 +42,8 @@ public class CustomerListDataAccessService implements CustomerDao {
     @Override
     public Optional<Customer> selectCustomerById(Integer id) {
         return customers.stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst();
+            .filter(c -> c.getId().equals(id))
+            .findFirst();
     }
 
     @Override
@@ -54,21 +54,21 @@ public class CustomerListDataAccessService implements CustomerDao {
     @Override
     public boolean existsCustomerWithEmail(String email) {
         return customers.stream()
-                .anyMatch(c -> c.getEmail().equals(email));
+            .anyMatch(c -> c.getEmail().equals(email));
     }
 
     @Override
     public boolean existsCustomerById(Integer id) {
         return customers.stream()
-                .anyMatch(c -> c.getId().equals(id));
+            .anyMatch(c -> c.getId().equals(id));
     }
 
     @Override
     public void deleteCustomerById(Integer customerId) {
         customers.stream()
-                .filter(c -> c.getId().equals(customerId))
-                .findFirst()
-                .ifPresent(customers::remove);
+            .filter(c -> c.getId().equals(customerId))
+            .findFirst()
+            .ifPresent(customers::remove);
     }
 
     @Override
@@ -79,13 +79,13 @@ public class CustomerListDataAccessService implements CustomerDao {
     @Override
     public Optional<Customer> selectUserByEmail(String email) {
         return customers.stream()
-                .filter(c -> c.getUsername().equals(email))
-                .findFirst();
+            .filter(c -> c.getUsername().equals(email))
+            .findFirst();
     }
 
     @Override
-    public void updateCustomerProfileImageId(String profileImageId, Integer customerId) {
-        // TODO: Implement this 😅
+    public void updateCustomerImageProfileId(String profileId, Integer customerId) {
+        //TODO:Implement this maybe
     }
 
 }

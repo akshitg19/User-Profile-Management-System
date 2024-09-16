@@ -12,5 +12,5 @@ public interface CustomerDao {
     void deleteCustomerById(Integer customerId);
     void updateCustomer(Customer update);
     Optional<Customer> selectUserByEmail(String email);
-    void updateCustomerProfileImageId(String profileImageId, Integer customerId);
+    void updateCustomerImageProfileId(String profileId, Integer customerId);
 }

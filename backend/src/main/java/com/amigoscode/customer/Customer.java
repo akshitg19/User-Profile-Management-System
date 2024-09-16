@@ -12,57 +12,57 @@ import java.util.Objects;
 
 @Entity
 @Table(
-        name = "customer",
-        uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "customer_email_unique",
-                        columnNames = "email"
-                ),
-                @UniqueConstraint(
-                        name = "profile_image_id_unique",
-                        columnNames = "profileImageId"
-                )
-        }
+    name = "customer",
+    uniqueConstraints = {
+        @UniqueConstraint(
+            name = "customer_email_unique",
+            columnNames = "email"
+        ),
+        @UniqueConstraint(
+            name = "profile_image_id_unique",
+            columnNames = "profileImageId"
+        )
+    }
 )
 public class Customer implements UserDetails {
 
     @Id
     @SequenceGenerator(
-            name = "customer_id_seq",
-            sequenceName = "customer_id_seq",
-            allocationSize = 1
+        name = "customer_id_seq",
+        sequenceName = "customer_id_seq",
+        allocationSize = 1
     )
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "customer_id_seq"
+        strategy = GenerationType.SEQUENCE,
+        generator = "customer_id_seq"
     )
     private Integer id;
     @Column(
-            nullable = false
+        nullable = false
     )
     private String name;
     @Column(
-            nullable = false
+        nullable = false
     )
     private String email;
     @Column(
-            nullable = false
+        nullable = false
     )
     private Integer age;
 
     @Column(
-            nullable = false
+        nullable = false
     )
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Column(
-            nullable = false
+        nullable = false
     )
     private String password;
 
     @Column(
-            unique = true
+        unique = true
     )
     private String profileImageId;
 
@@ -70,11 +70,11 @@ public class Customer implements UserDetails {
     }
 
     public Customer(Integer id,
-                    String name,
-                    String email,
-                    String password,
-                    Integer age,
-                    Gender gender) {
+        String name,
+        String email,
+        String password,
+        Integer age,
+        Gender gender) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -84,21 +84,21 @@ public class Customer implements UserDetails {
     }
 
     public Customer(Integer id,
-                    String name,
-                    String email,
-                    String password,
-                    Integer age,
-                    Gender gender,
-                    String profileImageId) {
-       this(id, name, email, password, age, gender);
-       this.profileImageId = profileImageId;
+        String name,
+        String email,
+        String password,
+        Integer age,
+        Gender gender,
+        String profileImageId) {
+        this(id, name, email, password, age, gender);
+        this.profileImageId=profileImageId;
     }
 
     public Customer(String name,
-                    String email,
-                    String password,
-                    Integer age,
-                    Gender gender) {
+        String email,
+        String password,
+        Integer age,
+        Gender gender) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -205,13 +205,13 @@ public class Customer implements UserDetails {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
-                ", password='" + password + '\'' +
-                ", profileImageId='" + profileImageId + '\'' +
-                '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", age=" + age +
+            ", gender=" + gender +
+            ", password='" + password + '\'' +
+            ", profileImageId='" + profileImageId + '\'' +
+            '}';
     }
 }

@@ -31,14 +31,8 @@ class CustomerRowMapperTest {
 
         // Then
         Customer expected = new Customer(
-                1,
-                "Jamila",
-                "jamila@gmail.com",
-                "password",
-                19,
-                Gender.FEMALE,
-                "22222"
-        );
+                1, "Jamila", "jamila@gmail.com", "password", 19,
+                Gender.FEMALE, "22222");
         assertThat(actual).isEqualTo(expected);
     }
 }
